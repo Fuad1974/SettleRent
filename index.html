@@ -397,6 +397,9 @@
     .timeline-wrapper{margin:10px 0}
     .inline-field{display:flex;gap:4px;align-items:center}
     .field-wrapper{position:relative}
+    /* Highlight unit field - soft purple, no border */
+    #unitNo{background:rgba(139,92,246,0.06) !important}
+    [data-theme="dark"] #unitNo{background:rgba(167,139,250,0.08) !important}
     /* Highlight handover date - blue, no border */
     #handoverDate{background:rgba(59,130,246,0.1) !important}
     [data-theme="dark"] #handoverDate{background:rgba(96,165,250,0.12) !important}
@@ -454,7 +457,8 @@
     .stale-data-warning{display:none;background:linear-gradient(135deg,#dc2626 0%,#b91c1c 100%);color:white;padding:10px 16px;border-radius:8px;margin-bottom:12px;font-weight:600;font-size:0.9rem;text-align:center;animation:staleWarningPulse 1.5s infinite;border:2px solid #991b1b}
     .stale-data-warning.visible{display:block}
     .stale-data-warning .warning-icon{font-size:1.2rem;margin-right:8px}
-    .stale-data-warning .new-result{display:block;margin-top:4px;font-size:0.95rem}.stale-data-warning .new-result-value{background:rgba(255,255,255,0.2);padding:2px 10px;border-radius:4px;font-weight:700;margin-left:4px}
+    .stale-data-warning .new-result{display:block;margin-top:4px;font-size:0.95rem}
+    .stale-data-warning .new-result-value{background:rgba(255,255,255,0.2);padding:2px 10px;border-radius:4px;font-weight:700;margin-left:4px}
     .stale-data-warning .recalc-btn{background:white;color:#dc2626;border:none;padding:4px 12px;border-radius:4px;font-weight:700;cursor:pointer;margin-left:12px;font-size:0.85rem}
     .stale-data-warning .recalc-btn:hover{background:#fef2f2}
     @keyframes staleWarningPulse{0%,100%{opacity:1}50%{opacity:0.85}}
@@ -961,57 +965,71 @@
     .recalc-warning-flag {
       display: none;
       position: fixed;
-      top: 10px;
+      top: 12px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 9999;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      padding: 14px 28px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fcd34d 100%);
-      border: 3px solid #f59e0b;
-      box-shadow: 0 8px 32px rgba(245,158,11,0.4), 0 0 0 6px rgba(245,158,11,0.15);
-      animation: flag-pulse 1.2s ease-in-out infinite;
+      gap: 16px;
+      padding: 18px 36px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 40%, #fcd34d 70%, #f59e0b 100%);
+      border: 4px solid #f59e0b;
+      box-shadow: 0 12px 48px rgba(245,158,11,0.5), 0 0 0 8px rgba(245,158,11,0.2), inset 0 2px 4px rgba(255,255,255,0.4);
+      animation: flag-pulse 1s ease-in-out infinite;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .recalc-warning-flag:hover {
-      transform: translateX(-50%) scale(1.05);
-      box-shadow: 0 10px 40px rgba(245,158,11,0.5), 0 0 0 8px rgba(245,158,11,0.2);
+      transform: translateX(-50%) scale(1.08);
+      box-shadow: 0 16px 56px rgba(245,158,11,0.6), 0 0 0 12px rgba(245,158,11,0.25), inset 0 2px 4px rgba(255,255,255,0.4);
     }
     .recalc-warning-flag.visible { display: flex; }
     .recalc-warning-flag .flag-icon {
-      font-size: 2rem;
-      animation: flag-wave 0.6s ease-in-out infinite alternate;
+      font-size: 2.6rem;
+      animation: flag-wave 0.5s ease-in-out infinite alternate;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
     }
     .recalc-warning-flag .flag-text {
-      font-size: 1.1rem;
+      font-size: 1.4rem;
       font-weight: 800;
       color: #92400e;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+    }
+    .recalc-warning-flag .flag-settlement {
+      font-size: 1.1rem;
+      color: #1e3a5f;
+      font-weight: 800;
+      background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 100%);
+      padding: 6px 14px;
+      border-radius: 8px;
+      margin: 6px 0;
+      border: 2px solid rgba(30,58,95,0.2);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     .recalc-warning-flag .flag-hint {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       color: #b45309;
       font-weight: 600;
     }
     @keyframes flag-pulse {
-      0%, 100% { box-shadow: 0 8px 32px rgba(245,158,11,0.4), 0 0 0 6px rgba(245,158,11,0.15); }
-      50% { box-shadow: 0 12px 48px rgba(245,158,11,0.6), 0 0 0 12px rgba(245,158,11,0.25); }
+      0%, 100% { box-shadow: 0 12px 48px rgba(245,158,11,0.5), 0 0 0 8px rgba(245,158,11,0.2), inset 0 2px 4px rgba(255,255,255,0.4); }
+      50% { box-shadow: 0 16px 64px rgba(245,158,11,0.7), 0 0 0 16px rgba(245,158,11,0.3), inset 0 2px 4px rgba(255,255,255,0.4); }
     }
     @keyframes flag-wave {
-      0% { transform: rotate(-8deg); }
-      100% { transform: rotate(8deg); }
+      0% { transform: rotate(-10deg); }
+      100% { transform: rotate(10deg); }
     }
     [data-theme="dark"] .recalc-warning-flag {
       background: linear-gradient(135deg, #451a03 0%, #78350f 50%, #92400e 100%);
       border-color: #fbbf24;
-      box-shadow: 0 8px 32px rgba(251,191,36,0.5), 0 0 0 6px rgba(251,191,36,0.2);
+      box-shadow: 0 12px 48px rgba(251,191,36,0.6), 0 0 0 8px rgba(251,191,36,0.25);
     }
-    [data-theme="dark"] .recalc-warning-flag .flag-text { color: #fef3c7; }
+    [data-theme="dark"] .recalc-warning-flag .flag-text { color: #fef3c7; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+    [data-theme="dark"] .recalc-warning-flag .flag-settlement { background: linear-gradient(135deg, rgba(254,243,199,0.9) 0%, rgba(253,230,138,0.9) 100%); color: #1e3a5f; border-color: rgba(251,191,36,0.5); }
     [data-theme="dark"] .recalc-warning-flag .flag-hint { color: #fde68a; }
     
     /* Dark mode */
@@ -1208,7 +1226,7 @@
       .case-notes-icon, .mini-toggle, .special-import, .import-actions, .cheque-ribbon-separator,
       #refreshPageBtn, #floatingResetBtn, #darkModeToggle, #healthPanelBtn, #calcBtn, #openCommModalSidebar,
       #verifyAiBtn, .field-emoji, .cutoff-value-flag, .sc-value-flag, .lease-duration-badge,
-      .cheque-cleared-icon, datalist {display:none !important}
+      .cheque-cleared-icon, datalist, #scMasterToggleWrap, .recalc-warning-flag {display:none !important}
       
       /* Show all buttons as hidden except labels */
       .btn {display:none !important}
@@ -2050,6 +2068,7 @@
     <span class="flag-icon" aria-hidden="true">🚩</span>
     <div>
       <div class="flag-text">⚠ DATA MODIFIED</div>
+      <div class="flag-settlement" id="flagSettlementPreview"></div>
       <div class="flag-hint">Click to refresh page</div>
     </div>
   </div>
@@ -3431,52 +3450,82 @@ Examples:
     }
     
     function checkIfDataStale() {
-      if(!calculationIsFresh || !lastCalculationHash) return; // No calculation done yet
+      if(!lastCalculationHash) return; // No calculation done yet
       const currentHash = getInputsHash();
-      if(currentHash !== lastCalculationHash) {
-        // Data changed - mark as stale and show new result
-        if(staleDataWarning) {
-          staleDataWarning.classList.add('visible');
-          const previewEl = qs('#newResultPreview');
-          if(previewEl) previewEl.textContent = getQuickSettlementPreview();
-        }
+      const isStale = currentHash !== lastCalculationHash;
+      
+      if(isStale) {
+        // Data changed - mark as stale and show new settlement
         document.body.classList.add('results-stale');
         calculationIsFresh = false;
+        
+        // Calculate preview once
+        const preview = getQuickSettlementPreview();
+        
+        // Update red ribbon preview
+        if(staleDataWarning) {
+          staleDataWarning.classList.add('visible');
+          try {
+            const previewSpan = staleDataWarning.querySelector('#newResultPreview');
+            if(previewSpan) previewSpan.textContent = preview;
+          } catch(err) {
+            console.error('Preview error:', err);
+          }
+        }
+        
+        // Update yellow flag preview
+        const flagPreview = document.getElementById('flagSettlementPreview');
+        if(flagPreview) flagPreview.textContent = 'New: ' + preview;
       }
     }
     
     // Quick settlement calculation for preview
     function getQuickSettlementPreview() {
       try {
+        // Inline days calculation (since daysInclusive may not be defined yet)
+        const calcDays = (s, e) => {
+          const sd = new Date(s), ed = new Date(e);
+          if(isNaN(sd) || isNaN(ed)) return 0;
+          return Math.round((ed - sd) / 86400000) + 1;
+        };
+        const parseNum = (v) => {
+          if(!v) return 0;
+          const n = parseFloat(String(v).replace(/,/g, ''));
+          return isNaN(n) ? 0 : n;
+        };
+        
         const tenantVal = (tenantName?.value || '').trim().toLowerCase();
         const isEmptyTenant = tenantVal === 'empty' || tenantVal === 'empty unit';
         const ls = leaseStart?.value, le = leaseEnd?.value, ho = handoverDate?.value;
-        const rent = sanitizeNumber(rentInput?.value) || 0;
-        const sc = sanitizeNumber(serviceCharge?.value) || 0;
-        const dep = sanitizeNumber(securityDeposit?.value) || 0;
+        const rent = parseNum(rentInput?.value);
+        const sc = parseNum(serviceCharge?.value);
+        const dep = parseNum(securityDeposit?.value);
+        
+        const formatAED = (n) => 'AED ' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         
         if(isEmptyTenant || !ls || !le || !ho) {
           const net = dep - sc;
           const dir = net >= 0 ? 'Seller→Buyer' : 'Buyer→Seller';
-          return `${dir}: AED ${Math.abs(net).toLocaleString('en-AE', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+          return `${dir}: ${formatAED(net)}`;
         }
         
-        const totalDays = daysInclusive(ls, le);
+        const totalDays = calcDays(ls, le);
         if(totalDays <= 0) return '—';
         
         const dailyRent = rent / totalDays;
-        const sellerDays = daysInclusive(ls, ho);
+        const sellerDays = calcDays(ls, ho);
         const buyerDays = totalDays - sellerDays;
         const buyerRent = buyerDays * dailyRent;
         
         let pdcTotal = 0;
-        qsa('#pdcChequesRow input[type="number"]').forEach(inp => pdcTotal += sanitizeNumber(inp.value) || 0);
+        document.querySelectorAll('#pdcChequesRow input[type="number"]').forEach(inp => pdcTotal += parseNum(inp.value));
         
         const adj = buyerRent - pdcTotal;
         const net = Number((adj + dep - sc).toFixed(2));
         const dir = net >= 0 ? 'Seller→Buyer' : 'Buyer→Seller';
-        return `${dir}: AED ${Math.abs(net).toLocaleString('en-AE', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+        return `${dir}: ${formatAED(net)}`;
       } catch(e) {
+        console.error('Preview calc error:', e);
         return '—';
       }
     }
@@ -3765,6 +3814,13 @@ Examples:
       const flag = qs('#recalcWarningFlag');
       if (flag) {
         flag.classList.add('visible');
+        // Update settlement preview
+        const flagPreview = flag.querySelector('#flagSettlementPreview');
+        if(flagPreview) {
+          try {
+            flagPreview.textContent = 'New: ' + getQuickSettlementPreview();
+          } catch(e) {}
+        }
       }
     }
     
@@ -3773,6 +3829,13 @@ Examples:
       if (isInitializing) return;
       const flag = qs('#recalcWarningFlag');
       if (flag) {
+        // Update settlement preview
+        const flagPreview = flag.querySelector('#flagSettlementPreview');
+        if(flagPreview) {
+          try {
+            flagPreview.textContent = 'New: ' + getQuickSettlementPreview();
+          } catch(e) {}
+        }
         flag.classList.add('visible');
         setTimeout(() => {
           flag.classList.remove('visible');
