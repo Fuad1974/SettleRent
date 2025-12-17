@@ -454,7 +454,7 @@
     .stale-data-warning{display:none;background:linear-gradient(135deg,#dc2626 0%,#b91c1c 100%);color:white;padding:10px 16px;border-radius:8px;margin-bottom:12px;font-weight:600;font-size:0.9rem;text-align:center;animation:staleWarningPulse 1.5s infinite;border:2px solid #991b1b}
     .stale-data-warning.visible{display:block}
     .stale-data-warning .warning-icon{font-size:1.2rem;margin-right:8px}
-    .stale-data-warning .new-calc-preview{background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:4px;margin:0 6px;font-weight:700}
+    .stale-data-warning .new-result{display:block;margin-top:4px;font-size:0.95rem}.stale-data-warning .new-result-value{background:rgba(255,255,255,0.2);padding:2px 10px;border-radius:4px;font-weight:700;margin-left:4px}
     .stale-data-warning .recalc-btn{background:white;color:#dc2626;border:none;padding:4px 12px;border-radius:4px;font-weight:700;cursor:pointer;margin-left:12px;font-size:0.85rem}
     .stale-data-warning .recalc-btn:hover{background:#fef2f2}
     @keyframes staleWarningPulse{0%,100%{opacity:1}50%{opacity:0.85}}
@@ -2554,8 +2554,8 @@
 
     <!-- Stale Data Warning - shows when inputs changed after calculation -->
     <div class="stale-data-warning" id="staleDataWarning" role="alert">
-      <span class="warning-icon">⚠️</span>
-      <span>DATA MODIFIED!<br>New settlement will be:<span class="new-calc-preview" id="newCalcPreview">—</span></span>
+      <div><span class="warning-icon">⚠️</span><span>DATA MODIFIED!</span></div>
+      <div class="new-result">New settlement will be:<span class="new-result-value" id="newResultPreview">—</span></div>
       <button class="recalc-btn" onclick="document.getElementById('calcBtn').click()">🔄 RECALCULATE NOW</button>
     </div>
 
@@ -3434,10 +3434,10 @@ Examples:
       if(!calculationIsFresh || !lastCalculationHash) return; // No calculation done yet
       const currentHash = getInputsHash();
       if(currentHash !== lastCalculationHash) {
-        // Data changed - mark as stale and show new settlement preview
+        // Data changed - mark as stale and show new result
         if(staleDataWarning) {
           staleDataWarning.classList.add('visible');
-          const previewEl = qs('#newCalcPreview');
+          const previewEl = qs('#newResultPreview');
           if(previewEl) previewEl.textContent = getQuickSettlementPreview();
         }
         document.body.classList.add('results-stale');
@@ -3445,7 +3445,7 @@ Examples:
       }
     }
     
-    // Quick settlement calculation for stale warning preview
+    // Quick settlement calculation for preview
     function getQuickSettlementPreview() {
       try {
         const tenantVal = (tenantName?.value || '').trim().toLowerCase();
