@@ -454,6 +454,7 @@
     .stale-data-warning{display:none;background:linear-gradient(135deg,#dc2626 0%,#b91c1c 100%);color:white;padding:10px 16px;border-radius:8px;margin-bottom:12px;font-weight:600;font-size:0.9rem;text-align:center;animation:staleWarningPulse 1.5s infinite;border:2px solid #991b1b}
     .stale-data-warning.visible{display:block}
     .stale-data-warning .warning-icon{font-size:1.2rem;margin-right:8px}
+    .stale-data-warning .new-calc-preview{background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:4px;margin:0 6px;font-weight:700}
     .stale-data-warning .recalc-btn{background:white;color:#dc2626;border:none;padding:4px 12px;border-radius:4px;font-weight:700;cursor:pointer;margin-left:12px;font-size:0.85rem}
     .stale-data-warning .recalc-btn:hover{background:#fef2f2}
     @keyframes staleWarningPulse{0%,100%{opacity:1}50%{opacity:0.85}}
@@ -859,11 +860,11 @@
     .btn.whatsapp{background:#25d366;color:white;}
     .btn.ghost{background:transparent;border:1px solid #d1d5db;color:var(--muted);}
     
-    /* Timeline Visualization (increase ribbon height 35% total; keep font-size unchanged) */
-    #timeline-container { position:relative; height: 22.03px; background: #e2e8f0; border-radius: 11.03px; overflow: visible; display: flex; font-size: 0.605rem; font-weight: 600; color: #0f172a; text-align: center; line-height: 22.03px; box-shadow: inset 0 1px 1px rgba(0,0,0,0.04); cursor:default; }
-    .timeline-segment { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: width 0.45s ease, opacity 0.15s ease; position:relative; display:flex; align-items:center; justify-content:center; height:100%; border-radius:11.03px; padding:0 11.03px; color: #0f172a; }
-    #time-seller { background: #c7f9e0; width:0; color:#0f172a; border-top-left-radius:11.03px; border-bottom-left-radius:11.03px; }
-    #time-buyer { background: #b7c4ff; width:0; color:#0f172a; border-top-right-radius:11.03px; border-bottom-right-radius:11.03px; }
+    /* Timeline Visualization (increase ribbon height 10% only; keep font-size unchanged) */
+    #timeline-container { position:relative; height: 15.97px; background: #e2e8f0; border-radius: 7.99px; overflow: visible; display: flex; font-size: 0.605rem; font-weight: 600; color: #0f172a; text-align: center; line-height: 15.97px; box-shadow: inset 0 1px 1px rgba(0,0,0,0.04); cursor:default; }
+    .timeline-segment { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: width 0.45s ease, opacity 0.15s ease; position:relative; display:flex; align-items:center; justify-content:center; height:100%; border-radius:7.99px; padding:0 7.99px; color: #0f172a; }
+    #time-seller { background: #c7f9e0; width:0; color:#0f172a; border-top-left-radius:7.99px; border-bottom-left-radius:7.99px; }
+    #time-buyer { background: #b7c4ff; width:0; color:#0f172a; border-top-right-radius:7.99px; border-bottom-right-radius:7.99px; }
     .timeline-segment.is-hover { opacity:0.92; }
     .timeline-tooltip {
       position:absolute;
@@ -885,12 +886,12 @@
       opacity:1;
       transform:translateX(-50%) scale(1);
     }
-    /* SC split timeline styled to match the main timeline; increase ribbon height 35% total */
-    #timeline-sc-container { position:relative; height: 22.03px; background: #e2e8f0; border-radius: 11.03px; overflow: visible; display: flex; font-size: 0.605rem; font-weight: 600; color: #0f172a; text-align: center; line-height: 22.03px; margin-top:9.11px; box-shadow: inset 0 1px 1px rgba(0,0,0,0.04); }
-    .timeline-sc-segment { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: width 0.45s ease; height:100%; display:flex; align-items:center; justify-content:center; color: #0f172a; border-radius:11.03px; padding:0 11.03px; }
+    /* SC split timeline styled to match the main timeline; increase ribbon height 10% only */
+    #timeline-sc-container { position:relative; height: 15.97px; background: #e2e8f0; border-radius: 7.99px; overflow: visible; display: flex; font-size: 0.605rem; font-weight: 600; color: #0f172a; text-align: center; line-height: 15.97px; margin-top:6.6px; box-shadow: inset 0 1px 1px rgba(0,0,0,0.04); }
+    .timeline-sc-segment { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: width 0.45s ease; height:100%; display:flex; align-items:center; justify-content:center; color: #0f172a; border-radius:7.99px; padding:0 7.99px; }
     /* Differentiate SC colors from the main timeline while keeping same size/edges */
     /* Lighter SC ribbon colors for improved subtlety and contrast */
-    #sc-buyer { background: linear-gradient(135deg, #c7f9e0 0%, #a7f3d0 100%); width:0; color:#0f172a; border-radius:11.03px; }
+    #sc-buyer { background: linear-gradient(135deg, #c7f9e0 0%, #a7f3d0 100%); width:0; color:#0f172a; border-radius:7.99px; }
     .timeline-sc-segment small { font-weight:600; font-size:0.56rem; }
     .timeline-labels { display: flex; justify-content: space-between; font-size: 0.55rem; color: #0f172a; margin-top: 4px; font-weight: 500; gap:8px; }
     .timeline-labels span { transition:color 0.2s ease; }
@@ -2554,7 +2555,7 @@
     <!-- Stale Data Warning - shows when inputs changed after calculation -->
     <div class="stale-data-warning" id="staleDataWarning" role="alert">
       <span class="warning-icon">⚠️</span>
-      <span>DATA CHANGED! Results below may not match current inputs.</span>
+      <span>DATA MODIFIED!<br>New settlement will be:<span class="new-calc-preview" id="newCalcPreview">—</span></span>
       <button class="recalc-btn" onclick="document.getElementById('calcBtn').click()">🔄 RECALCULATE NOW</button>
     </div>
 
@@ -3433,10 +3434,50 @@ Examples:
       if(!calculationIsFresh || !lastCalculationHash) return; // No calculation done yet
       const currentHash = getInputsHash();
       if(currentHash !== lastCalculationHash) {
-        // Data changed - mark as stale
-        if(staleDataWarning) staleDataWarning.classList.add('visible');
+        // Data changed - mark as stale and show new settlement preview
+        if(staleDataWarning) {
+          staleDataWarning.classList.add('visible');
+          const previewEl = qs('#newCalcPreview');
+          if(previewEl) previewEl.textContent = getQuickSettlementPreview();
+        }
         document.body.classList.add('results-stale');
         calculationIsFresh = false;
+      }
+    }
+    
+    // Quick settlement calculation for stale warning preview
+    function getQuickSettlementPreview() {
+      try {
+        const tenantVal = (tenantName?.value || '').trim().toLowerCase();
+        const isEmptyTenant = tenantVal === 'empty' || tenantVal === 'empty unit';
+        const ls = leaseStart?.value, le = leaseEnd?.value, ho = handoverDate?.value;
+        const rent = sanitizeNumber(rentInput?.value) || 0;
+        const sc = sanitizeNumber(serviceCharge?.value) || 0;
+        const dep = sanitizeNumber(securityDeposit?.value) || 0;
+        
+        if(isEmptyTenant || !ls || !le || !ho) {
+          const net = dep - sc;
+          const dir = net >= 0 ? 'Seller→Buyer' : 'Buyer→Seller';
+          return `${dir}: AED ${Math.abs(net).toLocaleString('en-AE', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+        }
+        
+        const totalDays = daysInclusive(ls, le);
+        if(totalDays <= 0) return '—';
+        
+        const dailyRent = rent / totalDays;
+        const sellerDays = daysInclusive(ls, ho);
+        const buyerDays = totalDays - sellerDays;
+        const buyerRent = buyerDays * dailyRent;
+        
+        let pdcTotal = 0;
+        qsa('#pdcChequesRow input[type="number"]').forEach(inp => pdcTotal += sanitizeNumber(inp.value) || 0);
+        
+        const adj = buyerRent - pdcTotal;
+        const net = Number((adj + dep - sc).toFixed(2));
+        const dir = net >= 0 ? 'Seller→Buyer' : 'Buyer→Seller';
+        return `${dir}: AED ${Math.abs(net).toLocaleString('en-AE', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+      } catch(e) {
+        return '—';
       }
     }
 
